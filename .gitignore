@@ -1,0 +1,12 @@
+quickcheck.out
+*svg
+out*
+perf.data
+*.swp
+target
+tags
+callgrind*
+*db
+*txt
+*bak
+*log

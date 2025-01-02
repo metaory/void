@@ -1,0 +1,17 @@
+language: rust
+script: |
+  cargo build --verbose
+  cargo test --verbose --all
+matrix:
+  include:
+    - rust: stable
+    - rust: nightly
+    # Pinned for clippy and rustfmt
+    - rust: nightly-2019-02-02
+      env: CLIPPY=YESPLEASE
+      before_script: |
+        rustup component add clippy
+        rustup component add rustfmt
+      script: |
+        cargo +nightly-2019-02-02 clippy --all -- --deny warnings
+        cargo +nightly-2019-02-02 fmt --all -- --check
