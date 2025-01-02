@@ -1,0 +1,49 @@
+syntax = "proto2";
+
+package void;
+
+message Tag {
+  required string key = 1;
+  required string value = 2;
+}
+
+message Gps {
+  required float lat = 1;
+  required float lon = 2;
+}
+
+message Meta {
+  required uint64 ctime = 1;
+  required uint64 mtime = 2;
+  optional uint64 finish_time = 5;
+  required Gps gps = 3;
+  repeated Tag tags = 4;
+  optional uint64 due = 6;
+}
+
+message Node {
+  required uint64 id = 1;
+  required Meta meta = 2;
+  required string text = 3;
+  repeated uint64 children = 4;
+  required bool collapsed = 5;
+  required bool stricken = 6;
+  required bool hide_stricken = 7;
+  required uint32 x = 8;
+  required uint32 y = 9;
+  required bool selected = 10;
+  required uint64 parent_id = 11;
+  optional string free_text = 12;
+  required bool auto_arrange = 13;
+}
+
+message Arrow {
+  required uint64 from_node = 1;
+  required uint64 to_node = 2;
+}
+
+message Screen {
+  repeated Node nodes = 1;
+  required uint64 max_id = 2;
+  repeated Arrow arrows = 3;
+}
